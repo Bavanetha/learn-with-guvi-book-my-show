@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
-const dotenv = require("dotenv").config()
+const dotenv = require("dotenv").config();
 const URL = process.env.DB;
 
 const DB_NAME = "movie_db";
@@ -65,3 +65,5 @@ app.get("/movie/:id", async (req, res) => {
 app.post("/book-ticket", (req, res) => {});
 
 app.listen(8000);
+
+
