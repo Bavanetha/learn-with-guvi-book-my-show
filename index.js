@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
-const URL =
-  "mongodb+srv://vasanth:bhv3HOzNqUA4IRcJ@cluster0.pn2r2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const dotenv = require("dotenv").config()
+const URL = process.env.DB;
 
 const DB_NAME = "movie_db";
 
@@ -51,12 +51,9 @@ app.get("/movie/:id", async (req, res) => {
     // Step 3. Select the Collection
     let dbcollection = await db.collection(COLLECTION_NAME);
 
-    let movie = await dbcollection
-      .findOne({ _id: new ObjectId(id) });
+    let movie = await dbcollection.findOne({ _id: new ObjectId(id) });
 
-      
-      (await client)
-      .close();
+    (await client).close();
 
     res.json(movie);
   } catch (error) {
